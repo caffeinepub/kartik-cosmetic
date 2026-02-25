@@ -1,0 +1,155 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 5,
+  "summary": "E-commerce app for salon and parlour product sales, named 'Kartik Cosmetic'. Features product add, rate change, quantity selection, and a Flipkart-style UI with icons for all major actions.",
+  "architectural_notes": [
+    "App name: Kartik Cosmetic — targeted at salon and parlour product sales",
+    "UI style: Flipkart-inspired with icons for all major actions"
+  ],
+  "known_issues": [
+    "User reported the app is not working — ordering/cart flow may be broken or inaccessible"
+  ],
+  "isFixRequest": true,
+  "existing_features": [
+    {
+      "id": "feature-build-a-product-listing-page-homepage-in-flipkart-style-display-products-in-a-responsive-grid-with-product-image-name-price-rate-stock-badge-star-rating-placeholder-and-an-add-to-cart-icon-button-include-a-search-bar-and-category-filter-tabs-at-the-top",
+      "title": "Build a product listing page (homepage) in Flipkart style. Display products in a responsive grid with product image, name, price (rate), stock badge, star rating placeholder, and an 'Add to Cart' icon button. Include a search bar and category filter tabs at the top.",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-build-an-add-product-form-page-accessible-from-a-clearly-labelled-icon-button-plus-icon-in-the-header-the-form-must-include-fields-product-name-category-dropdown-description-price-stock-quantity-and-image-url-on-submit-call-the-backend-addproduct-function",
+      "title": "Build an Add Product form page accessible from a clearly labelled icon button ('+' / plus icon) in the header. The form must include fields: product name, category (dropdown), description, price, stock quantity, and image URL. On submit, call the backend addProduct function.",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-build-a-product-detail-page-show-full-product-info-a-quantity-selector-increment-decrement-with-icon-buttons-respecting-max-stock-an-add-to-cart-button-and-a-buy-now-button-include-an-admin-accessible-inline-rate-price-edit-field-with-a-save-icon-button",
+      "title": "Build a product detail page. Show full product info, a quantity selector (increment/decrement with icon buttons, respecting max stock), an 'Add to Cart' button, and a 'Buy Now' button. Include an admin-accessible inline rate/price edit field with a save icon button.",
+      "reqIds": [
+        "REQ-5"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-build-a-shopping-cart-page-list-all-cart-items-with-product-image-name-unit-price-quantity-adjuster-icon-buttons-item-subtotal-and-a-remove-icon-button-show-order-total-and-a-proceed-to-checkout-place-order-button",
+      "title": "Build a shopping cart page. List all cart items with product image, name, unit price, quantity adjuster (icon buttons), item subtotal, and a remove icon button. Show order total and a 'Proceed to Checkout' / 'Place Order' button.",
+      "reqIds": [
+        "REQ-6"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-build-an-order-history-page-showing-all-past-orders-for-the-logged-in-user-with-order-date-items-quantities-and-total-amount",
+      "title": "Build an Order History page showing all past orders for the logged-in user with order date, items, quantities, and total amount.",
+      "reqIds": [
+        "REQ-7"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-apply-a-bold-vibrant-cosmetic-retail-visual-theme-across-the-entire-app-use-a-warm-rose-gold-and-deep-magenta-palette-with-clean-white-card-surfaces-modern-sans-serif-typography-and-flipkart-inspired-layout-conventions-sticky-header-with-cart-icon-badge-bottom-navigation-on-mobile-prominent-cta-buttons-display-the-app-name-kartik-cosmetic-with-a-logo-icon-in-the-header-use-icon-libraries-e-g-lucide-consistently-for-all-actions-add-edit-delete-cart-quantity-search-order-history",
+      "title": "Apply a bold, vibrant cosmetic retail visual theme across the entire app. Use a warm rose-gold and deep magenta palette with clean white card surfaces, modern sans-serif typography, and Flipkart-inspired layout conventions (sticky header with cart icon badge, bottom navigation on mobile, prominent CTA buttons). Display the app name 'Kartik Cosmetic' with a logo/icon in the header. Use icon libraries (e.g., Lucide) consistently for all actions: add, edit, delete, cart, quantity +/−, search, order history.",
+      "reqIds": [
+        "REQ-8"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-render-the-generated-hero-banner-and-logo-images-as-static-assets-from-frontend-public-assets-generated-and-use-them-in-the-header-and-homepage-banner-section",
+      "title": "Render the generated hero banner and logo images as static assets from frontend/public/assets/generated and use them in the header and homepage banner section.",
+      "reqIds": [
+        "REQ-9"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-audit-and-fix-the-end-to-end-cart-and-order-placement-flow-ensure-that-adding-items-to-the-cart-viewing-the-cart-adjusting-quantities-removing-items-and-placing-an-order-all-work-correctly-without-errors-or-blank-states",
+      "title": "Audit and fix the end-to-end cart and order placement flow. Ensure that adding items to the cart, viewing the cart, adjusting quantities, removing items, and placing an order all work correctly without errors or blank states.",
+      "reqIds": [
+        "REQ-10"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-audit-and-fix-the-frontend-react-query-hooks-in-usequeries-ts-to-ensure-all-backend-calls-products-cart-orders-are-correctly-wired-to-the-actor-handle-loading-error-states-gracefully-and-invalidate-relevant-queries-after-mutations-add-to-cart-remove-from-cart-place-order",
+      "title": "Audit and fix the frontend React Query hooks in useQueries.ts to ensure all backend calls (products, cart, orders) are correctly wired to the actor, handle loading/error states gracefully, and invalidate relevant queries after mutations (add to cart, remove from cart, place order).",
+      "reqIds": [
+        "REQ-12"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-ensure-the-app-is-fully-usable-by-an-anonymous-non-authenticated-user-for-browsing-and-cart-actions-and-that-the-internet-identity-login-flow-does-not-block-or-break-core-functionality-if-login-is-required-for-cart-orders-display-a-clear-prompt-rather-than-a-blank-or-broken-state",
+      "title": "Ensure the app is fully usable by an anonymous (non-authenticated) user for browsing and cart actions, and that the Internet Identity login flow does not block or break core functionality. If login is required for cart/orders, display a clear prompt rather than a blank or broken state.",
+      "reqIds": [
+        "REQ-13"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Product listing page with Flipkart-style UI and icons",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-2",
+      "summary": "Add product feature with icon",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-3",
+      "summary": "Rate/price change feature for products",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-4",
+      "summary": "Quantity selection option on product page",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-5",
+      "summary": "Cart and checkout flow similar to Flipkart",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-6",
+      "summary": "Create a backend actor with stable storage for products. Each product must have: id, name, category, description, price (rate), stock quantity, and image URL. Expose update functions: addProduct, updateProductRate, updateProductQuantity, removeProduct; and query functions: getAllProducts, getProductById, searchProducts.",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-7",
+      "summary": "Create a backend cart/order system. Support addToCart(productId, qty), removeFromCart(productId), getCart, placeOrder, and getOrderHistory per user (using caller principal).",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-9",
+      "summary": "Audit and fix the backend Motoko actor to ensure all query and update functions (getAllProducts, getProductById, addToCart, removeFromCart, getCart, placeOrder, getOrderHistory) return correct data and do not trap or silently fail. Verify stable storage is functioning properly across upgrades.",
+      "reqIds": [
+        "REQ-11"
+      ],
+      "status": "pending"
+    }
+  ],
+  "gameProjectType": "none",
+  "projectName": "Kartik Cosmetic",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}

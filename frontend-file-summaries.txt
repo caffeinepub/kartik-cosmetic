@@ -1,0 +1,20 @@
+{
+  "frontend/src/index.css": "Global styles with rose-gold and deep magenta OKLCH color palette, Poppins and Playfair Display fonts, brand gradient utilities, and light/dark mode CSS variables.",
+  "frontend/tailwind.config.js": "Extended Tailwind config with Poppins/Playfair Display fonts, brand color tokens (magenta, rose, gold), custom shadows (card, brand), and fade-in animation.",
+  "frontend/src/hooks/useQueries.ts": "All React Query hooks for products (CRUD), cart (add/remove/get), and orders (place/history), plus a useCartCount helper.",
+  "frontend/src/App.tsx": "TanStack Router setup with routes for home, product detail, cart, and order history pages, wrapped in Layout with Sonner Toaster.",
+  "frontend/src/components/Layout.tsx": "Simple layout wrapper composing Header, main content outlet, and Footer.",
+  "frontend/src/components/Header.tsx": "Sticky branded header with Kartik Cosmetic logo, navigation links, Add Product dialog trigger, and cart icon with item count badge.",
+  "frontend/src/components/Footer.tsx": "Footer with brand logo, copyright year, and caffeine.ai attribution link with UTM tracking.",
+  "frontend/src/components/SearchBar.tsx": "Controlled search input with Search icon and clear button for real-time product filtering.",
+  "frontend/src/components/CategoryTabs.tsx": "Horizontally scrollable pill-style category filter tabs with \"All\" option and brand gradient for active state.",
+  "frontend/src/components/QuantitySelector.tsx": "Reusable increment/decrement quantity selector with min/max enforcement and two size variants.",
+  "frontend/src/components/ProductCard.tsx": "Flipkart-style product card with image, name, star rating, price, stock badge, and Add to Cart button.",
+  "frontend/src/components/AddProductForm.tsx": "Validated form for adding new products with all required fields, category dropdown, image preview, and loading state.",
+  "frontend/src/components/CartItem.tsx": "Cart line item row with product image, name, unit price, quantity selector, subtotal, and remove button.",
+  "frontend/src/components/OrderCard.tsx": "Order history card displaying order number, date, line items with quantities, and total amount.",
+  "frontend/src/pages/ProductListingPage.tsx": "Homepage with hero banner, search bar, category tabs, responsive 2-4 column product grid, loading skeletons, and empty states.",
+  "frontend/src/pages/ProductDetailPage.tsx": "Full product detail page with image, description, inline price editor, quantity selector, Add to Cart and Buy Now buttons.",
+  "frontend/src/pages/CartPage.tsx": "Shopping cart page with item list, quantity adjusters, order summary sidebar, and Place Order flow with success confirmation.",
+  "frontend/src/pages/OrderHistoryPage.tsx": "Order history page listing all past orders in reverse chronological order with empty state handling."
+}

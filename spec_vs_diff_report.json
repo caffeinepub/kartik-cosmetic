@@ -1,0 +1,65 @@
+{
+  "kind": "spec_vs_diff_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-25T18:35:13.286Z",
+  "summary": "The diff implements substantial fixes across backend and frontend for the cart, ordering, and app functionality. Most requirements are addressed: backend types and functions are updated, React Query hooks are wired correctly with invalidation, UI pages handle loading/error states, and anonymous user browsing is supported with error messages for auth-required actions. However, there are some gaps, particularly around the anonymous user experience (REQ-13) and certain backend behaviors (REQ-11).",
+  "missing_requirements": [
+    {
+      "requirement": "If cart or order features require login, a clear, user-friendly message is shown prompting the user to log in rather than a blank or broken state.",
+      "reason": "The CartPage and OrderHistoryPage do not show a dedicated login prompt when the user is anonymous. The useGetCart and useGetOrderHistory hooks silently catch errors and return empty arrays, so anonymous users see an empty cart or empty order history with no explanation that login is required.",
+      "evidence": [
+        "frontend/src/hooks/useQueries.ts",
+        "frontend/src/pages/CartPage.tsx",
+        "frontend/src/pages/OrderHistoryPage.tsx"
+      ]
+    },
+    {
+      "requirement": "placeOrder creates an order entry for the caller, deducts stock, and clears the cart.",
+      "reason": "The backend main.mo is truncated and the placeOrder implementation body is not visible in the diff. It cannot be confirmed that stock deduction is implemented as required by REQ-11.",
+      "evidence": [
+        "backend/main.mo"
+      ]
+    }
+  ],
+  "hallucinated_features": [
+    {
+      "description": "A migration module (backend/migration.mo) was added to handle data migration from an old actor schema with imgUrl, lineItems, and orderHistories fields to a new schema.",
+      "reason": "The build request requirements focus on fixing existing functionality and do not mention schema migration or upgrading from a previous data model. This is extra functionality not requested.",
+      "evidence": [
+        "backend/migration.mo"
+      ]
+    },
+    {
+      "description": "A urlParams utility (frontend/src/utils/urlParams.ts) was added with functions for URL parameter parsing, session storage persistence, and clearing parameters from the URL hash, including a caffeineAdminToken concept.",
+      "reason": "The build request does not mention URL parameter utilities, session storage helpers, or admin token management via URL params. This utility goes beyond the requested bug fixes.",
+      "evidence": [
+        "frontend/src/utils/urlParams.ts"
+      ]
+    },
+    {
+      "description": "The useActor.ts hook references getSecretParameter and _initializeAccessControlWithSecret for an admin token flow via URL parameters.",
+      "reason": "The build request does not request any admin token or access control initialization feature via URL parameters. This was not in the requirements.",
+      "evidence": [
+        "frontend/src/hooks/useActor.ts"
+      ]
+    }
+  ],
+  "confidence": 0.72,
+  "changed_files": [
+    "backend/main.mo",
+    "backend/migration.mo",
+    "frontend/src/components/AddProductForm.tsx",
+    "frontend/src/components/CartItem.tsx",
+    "frontend/src/components/OrderCard.tsx",
+    "frontend/src/components/ProductCard.tsx",
+    "frontend/src/components/QuantitySelector.tsx",
+    "frontend/src/hooks/useActor.ts",
+    "frontend/src/hooks/useQueries.ts",
+    "frontend/src/pages/CartPage.tsx",
+    "frontend/src/pages/OrderHistoryPage.tsx",
+    "frontend/src/pages/ProductDetailPage.tsx",
+    "frontend/src/pages/ProductListingPage.tsx",
+    "frontend/src/utils/urlParams.ts",
+    "project_state.json"
+  ]
+}

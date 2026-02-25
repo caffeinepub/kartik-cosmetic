@@ -1,0 +1,113 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Fix broken cart, ordering, and overall app functionality",
+  "requirements": [
+    {
+      "id": "REQ-10",
+      "summary": "Audit and fix the end-to-end cart and order placement flow to ensure all cart operations (add, view, adjust, remove, place order) work without errors or blank states",
+      "acceptanceCriteria": [
+        "User can add a product to the cart from the product listing page or product detail page without errors.",
+        "Cart page loads and displays all added items with correct images, names, prices, and quantities.",
+        "Quantity increment/decrement buttons on the cart page update item quantities correctly.",
+        "Remove button on cart items successfully removes the item from the cart.",
+        "Order total is correctly calculated and displayed on the cart page.",
+        "'Proceed to Checkout' / 'Place Order' button successfully places the order and shows a confirmation message.",
+        "After placing an order, the cart is cleared.",
+        "Order History page loads and displays the placed order with correct date, items, quantities, and total."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/ProductListingPage.tsx",
+          "operation": "modify",
+          "description": "Review and fix the add-to-cart flow from product cards. Ensure ProductCard components correctly trigger the addToCart mutation when the add-to-cart button is clicked. Verify error handling displays user-friendly toast notifications on failure and success messages on successful addition. Ensure the cart badge in the header updates immediately after adding items."
+        },
+        {
+          "path": "frontend/src/pages/ProductDetailPage.tsx",
+          "operation": "modify",
+          "description": "Review and fix the add-to-cart and buy-now flows. Ensure the addToCart mutation is correctly wired with the selected quantity from the QuantitySelector component. Verify that both 'Add to Cart' and 'Buy Now' buttons work without errors, show appropriate loading states, and display success/error toasts. For 'Buy Now', ensure it adds to cart and navigates to the cart page."
+        },
+        {
+          "path": "frontend/src/pages/CartPage.tsx",
+          "operation": "modify",
+          "description": "Audit and fix all cart page functionality. Ensure the cart query correctly fetches and displays all cart items with proper product details (images, names, prices, quantities). Fix quantity adjustment by ensuring CartItem increment/decrement buttons correctly call addToCart/removeFromCart mutations. Verify the remove button properly calls removeFromCart mutation and updates the UI. Fix order total calculation to correctly sum all item subtotals. Ensure the 'Place Order' button calls the placeOrder mutation, handles success with a confirmation message, clears the cart, invalidates both cart and order history queries, and handles errors gracefully. Add proper loading and error states throughout."
+        },
+        {
+          "path": "frontend/src/components/CartItem.tsx",
+          "operation": "modify",
+          "description": "Review and fix the CartItem component to ensure quantity changes and item removal work correctly. Verify that the QuantitySelector correctly updates quantities by calling the appropriate backend mutations (addToCart for increments, removeFromCart for decrements when quantity > 1). Ensure the remove button calls removeFromCart with the correct productId. Add proper loading states during mutations and ensure the component correctly displays product details from the cart data."
+        },
+        {
+          "path": "frontend/src/pages/OrderHistoryPage.tsx",
+          "operation": "modify",
+          "description": "Review and fix the order history page to ensure it correctly fetches and displays placed orders. Verify the getOrderHistory query is properly wired, displays orders in reverse chronological order, and shows complete order details including items, quantities, and totals. Ensure proper loading skeletons are shown during data fetch and an appropriate empty state is displayed when no orders exist. Add error handling with user-friendly messages if the query fails."
+        },
+        {
+          "path": "frontend/src/components/Header.tsx",
+          "operation": "modify",
+          "description": "Review and fix the cart badge display in the header to ensure it accurately reflects the current cart item count. Verify that the badge updates immediately after any cart mutation (add, remove, quantity change) by correctly reading from the cart query data. Ensure the badge is reactive to cart query invalidations."
+        }
+      ]
+    },
+    {
+      "id": "REQ-12",
+      "summary": "Audit and fix React Query hooks to ensure all backend calls are correctly wired, handle loading/error states, and properly invalidate queries after mutations",
+      "acceptanceCriteria": [
+        "All React Query hooks correctly call their corresponding backend actor methods.",
+        "Loading spinners or skeleton states are shown while data is being fetched.",
+        "Error messages are displayed to the user when a backend call fails.",
+        "After placing an order, both cart and order history queries are invalidated and refetched.",
+        "After adding/removing cart items, the cart query is invalidated and the cart badge in the header updates correctly."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/hooks/useQueries.ts",
+          "operation": "modify",
+          "description": "Audit and fix all React Query hooks for products, cart, and orders. Ensure each query hook (useGetAllProducts, useGetProduct, useGetCart, useGetOrderHistory) correctly calls the corresponding backend actor method with proper error handling. Fix mutation hooks (useAddToCart, useRemoveFromCart, usePlaceOrder, useAddProduct) to ensure they correctly invoke backend methods, handle optimistic updates where appropriate, and properly invalidate related queries on success. Specifically: after addToCart or removeFromCart, invalidate ['cart'] and ['products']; after placeOrder, invalidate ['cart'], ['orderHistory'], and ['products']; after addProduct, invalidate ['products']. Ensure all hooks properly check for actor availability and return meaningful loading/error states. Add toast notifications for mutation success and error cases."
+        }
+      ]
+    },
+    {
+      "id": "REQ-13",
+      "summary": "Ensure the app is fully usable by anonymous users for browsing and that authentication flow does not break core functionality, with clear login prompts when required",
+      "acceptanceCriteria": [
+        "Anonymous users can browse products and view product details without errors.",
+        "If cart or order features require login, a clear, user-friendly message is shown prompting the user to log in.",
+        "The Internet Identity login flow completes without errors and correctly updates the actor/identity context.",
+        "After login, cart and order history are accessible and correctly scoped to the logged-in user's principal."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/ProductListingPage.tsx",
+          "operation": "modify",
+          "description": "Ensure anonymous users can browse the product listing page without errors. Verify the useGetAllProducts query works with both authenticated and anonymous actors. Ensure loading states and error messages are properly displayed. Do not block product browsing based on authentication status."
+        },
+        {
+          "path": "frontend/src/pages/ProductDetailPage.tsx",
+          "operation": "modify",
+          "description": "Ensure anonymous users can view product details without errors. If add-to-cart or buy-now actions require authentication, display a clear, user-friendly prompt asking the user to log in before proceeding, rather than showing a broken state or error. Consider checking authentication status before allowing cart mutations and showing a login prompt dialog or toast message."
+        },
+        {
+          "path": "frontend/src/pages/CartPage.tsx",
+          "operation": "modify",
+          "description": "Review cart page authentication handling. If the user must be authenticated to view their cart, display a clear prompt asking them to log in instead of showing a blank or broken state. Ensure that after login, the cart query correctly fetches the user's cart scoped to their principal. Verify that the login flow does not break the cart page and that query invalidations work correctly after authentication changes."
+        },
+        {
+          "path": "frontend/src/pages/OrderHistoryPage.tsx",
+          "operation": "modify",
+          "description": "Review order history authentication handling. If the user must be authenticated to view their orders, display a clear prompt asking them to log in instead of showing a blank or error state. Ensure that after login, the order history query correctly fetches orders scoped to the user's principal. Verify that the page gracefully handles authentication state changes and query invalidations."
+        },
+        {
+          "path": "frontend/src/components/Header.tsx",
+          "operation": "modify",
+          "description": "Ensure the header gracefully handles both authenticated and anonymous states. Verify that the cart badge displays correctly for anonymous users (if cart is available) or shows zero/hides appropriately. Ensure the login/logout flow in the header works without errors and correctly triggers query invalidations. After logout, ensure all user-scoped queries (cart, orders) are cleared from the cache."
+        },
+        {
+          "path": "frontend/src/hooks/useQueries.ts",
+          "operation": "modify",
+          "description": "Review all query hooks to ensure they gracefully handle both authenticated and anonymous actor states. Verify that queries depending on user identity (cart, order history) are properly enabled/disabled based on authentication status and that switching from anonymous to authenticated correctly refetches user-scoped data. Ensure mutation hooks check for authentication before executing if required and provide clear error messages when authentication is needed."
+        }
+      ]
+    }
+  ]
+}

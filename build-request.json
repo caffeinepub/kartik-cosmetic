@@ -1,0 +1,106 @@
+{
+  "kind": "build_request",
+  "title": "Fix broken cart, ordering, and overall app functionality",
+  "projectName": "Kartik Cosmetic",
+  "priority": "high",
+  "requirements": [
+    {
+      "id": "REQ-10",
+      "text": "Audit and fix the end-to-end cart and order placement flow. Ensure that adding items to the cart, viewing the cart, adjusting quantities, removing items, and placing an order all work correctly without errors or blank states.",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-latest"
+        ],
+        "quotes": [
+          "I try but not work this app"
+        ]
+      },
+      "acceptanceCriteria": [
+        "User can add a product to the cart from the product listing page or product detail page without errors.",
+        "Cart page loads and displays all added items with correct images, names, prices, and quantities.",
+        "Quantity increment/decrement buttons on the cart page update item quantities correctly.",
+        "Remove button on cart items successfully removes the item from the cart.",
+        "Order total is correctly calculated and displayed on the cart page.",
+        "'Proceed to Checkout' / 'Place Order' button successfully places the order and shows a confirmation message.",
+        "After placing an order, the cart is cleared.",
+        "Order History page loads and displays the placed order with correct date, items, quantities, and total."
+      ]
+    },
+    {
+      "id": "REQ-11",
+      "text": "Audit and fix the backend Motoko actor to ensure all query and update functions (getAllProducts, getProductById, addToCart, removeFromCart, getCart, placeOrder, getOrderHistory) return correct data and do not trap or silently fail. Verify stable storage is functioning properly across upgrades.",
+      "target": "backend",
+      "source": {
+        "messageIds": [
+          "msg-latest"
+        ],
+        "quotes": [
+          "I try but not work this app"
+        ]
+      },
+      "acceptanceCriteria": [
+        "getAllProducts returns all stored products without error.",
+        "addToCart correctly adds a product to the caller's cart and respects stock limits.",
+        "getCart returns the current caller's cart items.",
+        "removeFromCart removes the specified product from the caller's cart.",
+        "placeOrder creates an order entry for the caller, deducts stock, and clears the cart.",
+        "getOrderHistory returns all past orders for the caller.",
+        "No backend function traps or returns unexpected null/empty results for valid inputs."
+      ]
+    },
+    {
+      "id": "REQ-12",
+      "text": "Audit and fix the frontend React Query hooks in useQueries.ts to ensure all backend calls (products, cart, orders) are correctly wired to the actor, handle loading/error states gracefully, and invalidate relevant queries after mutations (add to cart, remove from cart, place order).",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-latest"
+        ],
+        "quotes": [
+          "I try but not work this app"
+        ]
+      },
+      "acceptanceCriteria": [
+        "All React Query hooks correctly call their corresponding backend actor methods.",
+        "Loading spinners or skeleton states are shown while data is being fetched.",
+        "Error messages are displayed to the user when a backend call fails.",
+        "After placing an order, both cart and order history queries are invalidated and refetched.",
+        "After adding/removing cart items, the cart query is invalidated and the cart badge in the header updates correctly."
+      ]
+    },
+    {
+      "id": "REQ-13",
+      "text": "Ensure the app is fully usable by an anonymous (non-authenticated) user for browsing and cart actions, and that the Internet Identity login flow does not block or break core functionality. If login is required for cart/orders, display a clear prompt rather than a blank or broken state.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-latest"
+        ],
+        "quotes": [
+          "I try but not work this app"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Anonymous users can browse products and view product details without errors.",
+        "If cart or order features require login, a clear, user-friendly message is shown prompting the user to log in.",
+        "The Internet Identity login flow completes without errors and correctly updates the actor/identity context.",
+        "After login, cart and order history are accessible and correctly scoped to the logged-in user's principal."
+      ]
+    }
+  ],
+  "constraints": [
+    "Do not change existing route structure in App.tsx.",
+    "Do not modify files under frontend/src/hooks/useInternetIdentity.ts, frontend/src/hooks/useActor.ts, frontend/src/main.tsx, or frontend/src/components/ui.",
+    "Preserve the existing rose-gold/magenta visual theme."
+  ],
+  "nonGoals": [
+    "Adding new product categories or fields.",
+    "Redesigning the visual theme.",
+    "Adding new pages or features beyond fixing existing broken functionality."
+  ],
+  "imageRequirements": {
+    "required": [],
+    "edits": []
+  }
+}

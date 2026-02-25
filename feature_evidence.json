@@ -1,0 +1,70 @@
+{
+  "kind": "feature_evidence_report",
+  "features": [
+    {
+      "featureId": "feature-audit-and-fix-the-end-to-end-cart-and-order-placement-flow-ensure-that-adding-items-to-the-cart-viewing-the-cart-adjusting-quantities-removing-items-and-placing-an-order-all-work-correctly-without-errors-or-blank-states",
+      "featureTitle": "Audit and fix the end-to-end cart and order placement flow. Ensure that adding items to the cart, viewing the cart, adjusting quantities, removing items, and placing an order all work correctly without errors or blank states.",
+      "files": [
+        "frontend/src/components/CartItem.tsx",
+        "frontend/src/pages/CartPage.tsx",
+        "frontend/src/pages/OrderHistoryPage.tsx",
+        "frontend/src/pages/ProductDetailPage.tsx",
+        "frontend/src/pages/ProductListingPage.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "authorization@4.0.0"
+      ],
+      "testIds": [
+        "REQ-10"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-audit-and-fix-the-frontend-react-query-hooks-in-usequeries-ts-to-ensure-all-backend-calls-products-cart-orders-are-correctly-wired-to-the-actor-handle-loading-error-states-gracefully-and-invalidate-relevant-queries-after-mutations-add-to-cart-remove-from-cart-place-order",
+      "featureTitle": "Audit and fix the frontend React Query hooks in useQueries.ts to ensure all backend calls (products, cart, orders) are correctly wired to the actor, handle loading/error states gracefully, and invalidate relevant queries after mutations (add to cart, remove from cart, place order).",
+      "files": [
+        "frontend/src/hooks/useQueries.ts"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "authorization@4.0.0"
+      ],
+      "testIds": [
+        "REQ-12"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-ensure-the-app-is-fully-usable-by-an-anonymous-non-authenticated-user-for-browsing-and-cart-actions-and-that-the-internet-identity-login-flow-does-not-block-or-break-core-functionality-if-login-is-required-for-cart-orders-display-a-clear-prompt-rather-than-a-blank-or-broken-state",
+      "featureTitle": "Ensure the app is fully usable by an anonymous (non-authenticated) user for browsing and cart actions, and that the Internet Identity login flow does not block or break core functionality. If login is required for cart/orders, display a clear prompt rather than a blank or broken state.",
+      "files": [
+        "frontend/src/hooks/useQueries.ts",
+        "frontend/src/pages/CartPage.tsx",
+        "frontend/src/pages/OrderHistoryPage.tsx",
+        "frontend/src/pages/ProductDetailPage.tsx",
+        "frontend/src/pages/ProductListingPage.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "authorization@4.0.0"
+      ],
+      "testIds": [
+        "REQ-13"
+      ],
+      "confidence": "high"
+    }
+  ]
+}

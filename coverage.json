@@ -1,0 +1,104 @@
+{
+  "kind": "coverage_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-25T18:35:13.289Z",
+  "sources": {
+    "buildRequest": true,
+    "implementationPlan": true
+  },
+  "requirements": {
+    "total": 4,
+    "implemented": 3,
+    "items": [
+      {
+        "id": "REQ-10",
+        "summary": "Audit and fix the end-to-end cart and order placement flow. Ensure that adding items to the cart, viewing the cart, adjusting quantities, removing items, and placing an order all work correctly without errors or blank states.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/pages/ProductListingPage.tsx",
+          "frontend/src/pages/ProductDetailPage.tsx",
+          "frontend/src/pages/CartPage.tsx",
+          "frontend/src/components/CartItem.tsx",
+          "frontend/src/pages/OrderHistoryPage.tsx",
+          "frontend/src/components/Header.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/pages/ProductListingPage.tsx",
+          "frontend/src/pages/ProductDetailPage.tsx",
+          "frontend/src/pages/CartPage.tsx",
+          "frontend/src/components/CartItem.tsx",
+          "frontend/src/pages/OrderHistoryPage.tsx"
+        ]
+      },
+      {
+        "id": "REQ-11",
+        "summary": "Audit and fix the backend Motoko actor to ensure all query and update functions (getAllProducts, getProductById, addToCart, removeFromCart, getCart, placeOrder, getOrderHistory) return correct data and do not trap or silently fail. Verify stable storage is functioning properly across upgrades.",
+        "status": "unknown",
+        "plannedFiles": [],
+        "matchedFiles": []
+      },
+      {
+        "id": "REQ-12",
+        "summary": "Audit and fix the frontend React Query hooks in useQueries.ts to ensure all backend calls (products, cart, orders) are correctly wired to the actor, handle loading/error states gracefully, and invalidate relevant queries after mutations (add to cart, remove from cart, place order).",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/hooks/useQueries.ts"
+        ],
+        "matchedFiles": [
+          "frontend/src/hooks/useQueries.ts"
+        ]
+      },
+      {
+        "id": "REQ-13",
+        "summary": "Ensure the app is fully usable by an anonymous (non-authenticated) user for browsing and cart actions, and that the Internet Identity login flow does not block or break core functionality. If login is required for cart/orders, display a clear prompt rather than a blank or broken state.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/pages/ProductListingPage.tsx",
+          "frontend/src/pages/ProductDetailPage.tsx",
+          "frontend/src/pages/CartPage.tsx",
+          "frontend/src/pages/OrderHistoryPage.tsx",
+          "frontend/src/components/Header.tsx",
+          "frontend/src/hooks/useQueries.ts"
+        ],
+        "matchedFiles": [
+          "frontend/src/pages/ProductListingPage.tsx",
+          "frontend/src/pages/ProductDetailPage.tsx",
+          "frontend/src/pages/CartPage.tsx",
+          "frontend/src/pages/OrderHistoryPage.tsx",
+          "frontend/src/hooks/useQueries.ts"
+        ]
+      }
+    ]
+  },
+  "changedFiles": [
+    "backend/authorization/MixinAuthorization.mo",
+    "backend/authorization/access-control.mo",
+    "backend/main.mo",
+    "backend/migration.mo",
+    "build-request.json",
+    "build-template/README.md",
+    "caffeine.lock.json",
+    "feature_evidence.json",
+    "frontend-implementation-plan.json",
+    "frontend/src/backend.d.ts",
+    "frontend/src/backend.ts",
+    "frontend/src/components/AddProductForm.tsx",
+    "frontend/src/components/CartItem.tsx",
+    "frontend/src/components/OrderCard.tsx",
+    "frontend/src/components/ProductCard.tsx",
+    "frontend/src/components/QuantitySelector.tsx",
+    "frontend/src/declarations/backend.did.d.ts",
+    "frontend/src/declarations/backend.did.js",
+    "frontend/src/hooks/useActor.ts",
+    "frontend/src/hooks/useQueries.ts",
+    "frontend/src/pages/CartPage.tsx",
+    "frontend/src/pages/OrderHistoryPage.tsx",
+    "frontend/src/pages/ProductDetailPage.tsx",
+    "frontend/src/pages/ProductListingPage.tsx",
+    "frontend/src/utils/urlParams.ts",
+    "project_state.json",
+    "scratch/component-selection.json",
+    "spec.md",
+    "spec_vs_diff_report.json"
+  ]
+}
